@@ -36,7 +36,7 @@ const PORT = 3001;
 app.use(bodyParser.json());
 app.use((0, cors_1.default)());
 mongoose_1.default.Promise = Promise;
-mongoose_1.default.connect('mongodb+srv://tryelsonmarques:tryelson%40123@node.wbzfjdz.mongodb.net/phonebook?retryWrites=true&w=majority', {
+mongoose_1.default.connect(`${process.env.MONGO_DB_URL}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });

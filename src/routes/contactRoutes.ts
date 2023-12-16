@@ -40,7 +40,6 @@ router.delete('/:id', async (request: Request, response: Response) => {
 });
 
 // update a contact
-
 router.patch('/:id', async (request: Request, response: Response) => {
     try {
         const updateContact = await Contact.findByIdAndUpdate(request.params.id, request.body, { new: true })

@@ -5,12 +5,14 @@ var cors_1 = require("cors");
 var bodyParser = require("body-parser");
 var mongoose_1 = require("mongoose");
 var contactRoutes_1 = require("./routes/contactRoutes");
+var dotenv_1 = require("dotenv");
 var app = (0, express_1.default)();
 var PORT = 3001;
+dotenv_1.default.config();
 app.use(bodyParser.json());
 app.use((0, cors_1.default)());
 mongoose_1.default.Promise = Promise;
-mongoose_1.default.connect('mongodb+srv://tryelsonmarques:tryelson%40123@node.wbzfjdz.mongodb.net/phonebook?retryWrites=true&w=majority', {
+mongoose_1.default.connect(process.env.MONGO_DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });

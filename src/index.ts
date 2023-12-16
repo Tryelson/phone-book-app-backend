@@ -3,15 +3,18 @@ import cors from 'cors';
 import * as bodyParser from 'body-parser';
 import mongoose, { ConnectOptions } from 'mongoose';
 import contactRoutes from './routes/contactRoutes';
+import dotenv from 'dotenv';
 
 const app: Application = express();
 const PORT = 3001;
+
+dotenv.config();
 
 app.use(bodyParser.json());
 app.use(cors());
 
 mongoose.Promise = Promise;
-mongoose.connect('mongodb+srv://tryelsonmarques:tryelson%40123@node.wbzfjdz.mongodb.net/phonebook?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGO_DB_URL as string, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 } as ConnectOptions);
