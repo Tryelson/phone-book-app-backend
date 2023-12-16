@@ -1,9 +1,11 @@
-import express, { Request, Response, NextFunction, Application } from 'express';
-import cors from 'cors';
 import * as bodyParser from 'body-parser';
 import mongoose, { ConnectOptions } from 'mongoose';
 import contactRoutes from './routes/contactRoutes';
-import dotenv from 'dotenv';
+import { Request, Response, NextFunction, Application } from 'express';
+import * as dotenv from 'dotenv';
+
+import express = require('express');
+import cors = require('cors');
 
 const app: Application = express();
 const PORT = 3001;
