@@ -91,7 +91,7 @@ router.delete('/:id', function (request, response) { return __awaiter(void 0, vo
             case 1:
                 deletedContact = _a.sent();
                 if (deletedContact) {
-                    response.status(200).json({ success: true, message: 'Contact deleted successfully' });
+                    response.status(200).json({ success: true, message: 'Contact successfully deleted!' });
                 }
                 else {
                     response.status(200).json({ success: false, message: 'Contact not found' });
