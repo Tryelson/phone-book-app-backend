@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var Contact_1 = require("../models/Contact");
+var cors = require("cors");
 var router = express.Router();
 // create a new contact
 router.post('/', function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
@@ -125,4 +126,5 @@ router.patch('/:id', function (request, response) { return __awaiter(void 0, voi
         }
     });
 }); });
+router.use(cors());
 exports.default = router;
