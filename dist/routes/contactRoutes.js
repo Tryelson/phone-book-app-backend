@@ -64,7 +64,7 @@ router.delete('/:id', (request, response) => __awaiter(void 0, void 0, void 0, f
         const { id } = request.params;
         const deletedContact = yield Contact_1.default.findByIdAndDelete(id);
         if (deletedContact) {
-            response.status(200).json({ success: true, message: 'Contact deleted successfully' });
+            response.status(200).json({ success: true, message: 'Contact successfully deleted!' });
         }
         else {
             response.status(200).json({ success: false, message: 'Contact not found' });

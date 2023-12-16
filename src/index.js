@@ -1,16 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = require("express");
-var cors_1 = require("cors");
 var bodyParser = require("body-parser");
 var mongoose_1 = require("mongoose");
 var contactRoutes_1 = require("./routes/contactRoutes");
-var dotenv_1 = require("dotenv");
-var app = (0, express_1.default)();
+var dotenv = require("dotenv");
+var express = require("express");
+var cors = require("cors");
+var app = express();
 var PORT = 3001;
-dotenv_1.default.config();
+dotenv.config();
 app.use(bodyParser.json());
-app.use((0, cors_1.default)());
+app.use(cors());
 mongoose_1.default.Promise = Promise;
 mongoose_1.default.connect(process.env.MONGO_DB_URL, {
     useNewUrlParser: true,
