@@ -1,6 +1,7 @@
 import * as express from "express";
 import { Request, Response, Router } from "express";
 import Contact from '../models/Contact'
+import cors = require('cors');
 
 const router: Router = express.Router();
 
@@ -48,5 +49,7 @@ router.patch('/:id', async (request: Request, response: Response) => {
         response.status(500).json({ error: 'Unable to update contact.' })
     }
 })
+
+router.use(cors())
 
 export default router
