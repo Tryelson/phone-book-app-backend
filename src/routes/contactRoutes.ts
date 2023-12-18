@@ -2,6 +2,7 @@ import * as express from "express";
 import { Request, Response, Router } from "express";
 import Contact from '../models/Contact'
 import cors = require('cors');
+import { handleMongoError, isMongoDBError } from "../utils/controllerErrors";
 
 const router: Router = express.Router();
 
@@ -11,7 +12,11 @@ router.post('/', async (request: Request, response: Response) => {
         const newContact = await Contact.create(request.body)
         response.status(201).json({success: true, newContact})
     } catch (error) {
-        response.status(500).json({success: false, message: 'Error on create a new contact!'})
+        if (isMongoDBError(error)) {
+            handleMongoError(error, response);
+        } else {
+            response.status(500).json({ success: false, message: 'Internal Server Error' });
+        }
     }
 })
 
