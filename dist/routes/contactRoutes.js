@@ -37,6 +37,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const Contact_1 = __importDefault(require("../models/Contact"));
+const cors = require("cors");
+const controllerErrors_1 = require("../utils/controllerErrors");
 const router = express.Router();
 // create a new contact
 router.post('/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
@@ -45,7 +47,12 @@ router.post('/', (request, response) => __awaiter(void 0, void 0, void 0, functi
         response.status(201).json({ success: true, newContact });
     }
     catch (error) {
-        response.status(500).json({ success: false, message: 'Error on create a new contact!' });
+        if ((0, controllerErrors_1.isMongoDBError)(error)) {
+            (0, controllerErrors_1.handleMongoError)(error, response);
+        }
+        else {
+            response.status(500).json({ success: false, message: 'Internal Server Error' });
+        }
     }
 }));
 // get all contacts
@@ -84,4 +91,5 @@ router.patch('/:id', (request, response) => __awaiter(void 0, void 0, void 0, fu
         response.status(500).json({ error: 'Unable to update contact.' });
     }
 }));
+router.use(cors());
 exports.default = router;
